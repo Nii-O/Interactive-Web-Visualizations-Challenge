@@ -8,39 +8,49 @@ function init() {
         otu_idss=[];
         otu_labelss=[];
 
-        for (let i = 0; i<10; i++){
-            sample_vals.push( data.samples[1]['sample_values'][i])
-            otu_idss.push(data.samples[1]['otu_ids'][i])
-            otu_labelss.push(data.samples[1]['otu_labels'][i])
+        for (let i = 0; i<data.samples.length; i++){
+            sample_vals.push( data.samples[i]['sample_values'])
+            otu_idss.push(data.samples[i]['otu_ids'])
+            otu_labelss.push(data.samples[i]['otu_labels'])
 
         }    
         
-        sample_vals.sort(function compareFunction(firstNum, secondNum) {
+        let bar_sample= (sample_vals[1].slice(0,13))
+        bar_sample.sort(function compareFunction(firstNum, secondNum) {
             // resulting order is (1, 2, 3)
             return firstNum - secondNum;
         });
-
+        
+        
+        
         console.log(otu_idss);
+
         let trace1 = {
             y: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            x: (sample_vals),
+            x: (bar_sample),
             type: 'bar',
             orientation: 'h'
         }
         let data1= [trace1]
         Plotly.newPlot('bar', data1);
 
+
+        let bubble_otu= (otu_idss[1]);
+        let bubble_sample= (sample_vals[1]);
+
+        console.log(bubble_sample);
+
         let trace2 = {
-            x: (otu_idss),
-            y: (sample_vals),
+            x: (bubble_otu),
+            y: (bubble_sample),
             mode: 'markers',
             marker: {
-              color: (otu_idss),
-              size: (sample_vals)
+              color: (bubble_otu),
+              size: (bubble_sample)
             }
         };
         let data2=[trace2]
-        Plotly.newPlot('bubble', data);
+        Plotly.newPlot('bubble', data2);
           
     });
 }
