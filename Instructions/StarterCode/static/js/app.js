@@ -1,8 +1,8 @@
 function init() {
     d3.json("samples.json").then(data => {
         console.log("read samples");
-        console.log(data);
-        console.log(data.samples[1]['sample_values'])
+        // console.log(data);
+        // console.log(data.samples[1]['sample_values'])
 
         sample_vals=[];
         otu_idss=[];
@@ -17,27 +17,35 @@ function init() {
         
         let bar_sample= (sample_vals[1].slice(0,10))
         let bar_labels= otu_idss[1].slice(0,10).reverse() 
+        let bar_text= otu_labelss[1].slice(0,10).reverse()
         bar_sample.sort(function compareFunction(firstNum, secondNum) {
             // resulting order is (1, 2, 3)
             return firstNum - secondNum;
         });
         
-        console.log(bar_labels[5]);
-        bar_labels_txt= []
+        // console.log(bar_text)
+        console.log(data.metadata[1]['ethnicity'])
 
-        for (let i =0; i<10; i++){
-            bar_labels_txt.push(bar_labels[i].toString())
-        }
+        let metadataa =data.metadata[1]
 
-        console.log(bar_labels_txt);
-        console.log(bar_sample);
+        let sample_metadata=['id: '+metadataa['id'],
+                             'ethnicity: '+metadataa['ethnicity'],
+                             'gender: '+metadataa['gender'],
+                             'age: '+metadataa['age'],
+                             'location: '+metadataa['location'] ,
+                             'bbtype: '+metadataa['bbtype'],
+                             'wfreq: '+metadataa['wfreq']];
 
+        // Plotly.newPlot('sample-metadata', sample_metadata);
+
+        console.log(sample_metadata)
+        
         let trace1 = {
-            y: (bar_labels_txt),
-            x: bar_sample,
-            // text: bar_labels,
-            type: 'bar',
-            orientation: 'h'
+          y: bar_labels.map(otuID => `OTU ${otuID}`),
+          x: bar_sample,
+          text: bar_text,
+          type: 'bar',
+          orientation: 'h'
         }
         let data1= [trace1]
         Plotly.newPlot('bar', data1);
