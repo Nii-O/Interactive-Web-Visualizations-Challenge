@@ -15,19 +15,27 @@ function init() {
 
         }    
         
-        let bar_sample= (sample_vals[1].slice(0,13))
+        let bar_sample= (sample_vals[1].slice(0,10))
+        let bar_labels= otu_idss[1].slice(0,10).reverse() 
         bar_sample.sort(function compareFunction(firstNum, secondNum) {
             // resulting order is (1, 2, 3)
             return firstNum - secondNum;
         });
         
-        
-        
-        console.log(otu_idss);
+        console.log(bar_labels[5]);
+        bar_labels_txt= []
+
+        for (let i =0; i<10; i++){
+            bar_labels_txt.push(bar_labels[i].toString())
+        }
+
+        console.log(bar_labels_txt);
+        console.log(bar_sample);
 
         let trace1 = {
-            y: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            x: (bar_sample),
+            y: (bar_labels_txt),
+            x: bar_sample,
+            // text: bar_labels,
             type: 'bar',
             orientation: 'h'
         }
@@ -60,22 +68,22 @@ function optionChanged(value) {
 
 init();
 
-var barData = [
-    {
-      y: yticks,
-      x: sample_values.slice(0, 10).reverse(),
-      text: otu_labels.slice(0, 10).reverse(),
-      type: "bar",
-      orientation: "h",
-    }
-  ];
-  // Create the layout for the bar chart. 
-  var barLayout = {
-    title: "Top 10 Bacteria Cultures Found",
-    margin: { t: 30, l: 150 }
-  };
-  // Use Plotly to plot the data with the layout. 
-  Plotly.newPlot("bar", barData, barLayout);
+// var barData = [
+//     {
+//       y: yticks,
+//       x: sample_values.slice(0, 10).reverse(),
+//       text: otu_labels.slice(0, 10).reverse(),
+//       type: "bar",
+//       orientation: "h",
+//     }
+//   ];
+//   // Create the layout for the bar chart. 
+//   var barLayout = {
+//     title: "Top 10 Bacteria Cultures Found",
+//     margin: { t: 30, l: 150 }
+//   };
+//   // Use Plotly to plot the data with the layout. 
+//   Plotly.newPlot("bar", barData, barLayout);
 
 
 //   use function buildCharts(sample) from line 7 to 54
