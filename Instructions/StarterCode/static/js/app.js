@@ -35,8 +35,8 @@ function init() {
         Plotly.newPlot('bar', data1);
 
 
-        let bubble_otu= (otu_idss[1]);
-        let bubble_sample= (sample_vals[1]);
+        let bubble_otu= (otu_idss[0]);
+        let bubble_sample= (sample_vals[0]);
 
         console.log(bubble_sample);
 
@@ -60,3 +60,22 @@ function optionChanged(value) {
 
 init();
 
+var barData = [
+    {
+      y: yticks,
+      x: sample_values.slice(0, 10).reverse(),
+      text: otu_labels.slice(0, 10).reverse(),
+      type: "bar",
+      orientation: "h",
+    }
+  ];
+  // Create the layout for the bar chart. 
+  var barLayout = {
+    title: "Top 10 Bacteria Cultures Found",
+    margin: { t: 30, l: 150 }
+  };
+  // Use Plotly to plot the data with the layout. 
+  Plotly.newPlot("bar", barData, barLayout);
+
+
+//   use function buildCharts(sample) from line 7 to 54
