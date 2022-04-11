@@ -36,7 +36,7 @@ function init() {
                              'bbtype: '+metadataa['bbtype'],
                              'wfreq: '+metadataa['wfreq']];
 
-        // Plotly.newPlot('sample-metadata', sample_metadata);
+        d3.select('#sample-metadata', sample_metadata);
 
         console.log(sample_metadata)
         
