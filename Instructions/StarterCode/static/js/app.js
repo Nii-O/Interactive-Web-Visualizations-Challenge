@@ -7,38 +7,58 @@ function init() {
         sample_vals=[];
         otu_idss=[];
         otu_labelss=[];
+        metadata_ids=[];
+
+
+        var dropdown = d3.select('#selDataset');
+        data.names.forEach((name)=>{
+            dropdown.append('option').text(name).property('value',name);
+        })
+
+        
+
 
         for (let i = 0; i<data.samples.length; i++){
             sample_vals.push( data.samples[i]['sample_values'])
             otu_idss.push(data.samples[i]['otu_ids'])
             otu_labelss.push(data.samples[i]['otu_labels'])
+            metadata_ids.push(data.metadata[i]['id'])
 
         }    
+        console.log(metadata_ids);
+
         
-        let bar_sample= (sample_vals[1].slice(0,10))
-        let bar_labels= otu_idss[1].slice(0,10).reverse() 
-        let bar_text= otu_labelss[1].slice(0,10).reverse()
+
+        const index = metadata_ids.findIndex(object => {
+            return object === value;
+
+        });
+        
+        console.log(index);
+
+
+        let bar_sample= (sample_vals[index].slice(0,10))
+        let bar_labels= otu_idss[index].slice(0,10).reverse() 
+        let bar_text= otu_labelss[index].slice(0,10).reverse()
         bar_sample.sort(function compareFunction(firstNum, secondNum) {
             // resulting order is (1, 2, 3)
             return firstNum - secondNum;
         });
         
-        // console.log(bar_text)
-        console.log(data.metadata[1]['ethnicity'])
+       console.log(bar_sample);
 
-        let metadataa =data.metadata[1]
+        let metadataa =data.metadata[index]
 
-        let sample_metadata=['id: '+metadataa['id'],
-                             'ethnicity: '+metadataa['ethnicity'],
-                             'gender: '+metadataa['gender'],
-                             'age: '+metadataa['age'],
-                             'location: '+metadataa['location'] ,
-                             'bbtype: '+metadataa['bbtype'],
-                             'wfreq: '+metadataa['wfreq']];
+        
+        d3.select('#sample-metadata').append("h6").text('id: '+metadataa['id']);
+        d3.select('#sample-metadata').append("h6").text('ethnicity: '+metadataa['ethnicity']);
+        d3.select('#sample-metadata').append("h6").text('gender: '+metadataa['gender']);
+        d3.select('#sample-metadata').append("h6").text('age: '+metadataa['age']);
+        d3.select('#sample-metadata').append("h6").text('location: '+metadataa['location']);
+        d3.select('#sample-metadata').append("h6").text('bbtype: '+metadataa['bbtype']);
+        d3.select('#sample-metadata').append("h6").text('wfreq: '+metadataa['wfreq']);
 
-        d3.select('#sample-metadata', sample_metadata);
-
-        console.log(sample_metadata)
+        // console.log(sample_metadata)
         
         let trace1 = {
           y: bar_labels.map(otuID => `OTU ${otuID}`),
@@ -51,8 +71,8 @@ function init() {
         Plotly.newPlot('bar', data1);
 
 
-        let bubble_otu= (otu_idss[0]);
-        let bubble_sample= (sample_vals[0]);
+        let bubble_otu= (otu_idss[index]);
+        let bubble_sample= (sample_vals[index]);
 
         console.log(bubble_sample);
 
