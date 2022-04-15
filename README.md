@@ -1,4 +1,4 @@
-# Plot.ly Homework - Belly Button Biodiversity
+# Plot.ly Challenge - Belly Button Biodiversity
 
 ![Bacteria by filterforge.com](Images/bacteria.jpg)
 
@@ -72,7 +72,7 @@ The following task is advanced and therefore optional.
 
 ## Rubric
 
-[Unit 14 Rubric - Plot.ly Homework - Belly Button Biodiversity](https://docs.google.com/document/d/1wD_hOEJELD2hifTaECfx66xlpEdJeYm3mL8q2Zoq1vo/edit?usp=sharing)
+[Unit 14 Rubric - Plot.ly Challenge - Belly Button Biodiversity](https://docs.google.com/document/d/1wD_hOEJELD2hifTaECfx66xlpEdJeYm3mL8q2Zoq1vo/edit?usp=sharing)
 
 - - -
 
